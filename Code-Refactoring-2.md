@@ -2,7 +2,7 @@
 - Used to turn cod fragments into a method with a descriptive name
 - Used to make code as readable
 
-### Example
+### Example 1
 
 Problem:
 ```java:
@@ -45,7 +45,7 @@ public class FootballPlayer40YardDashInfo {
 ```
 
 Solution:
-- Method 1
+- Step 1
 ```java:
 public class FootballPlayer40YardDashInfo {
 
@@ -91,7 +91,7 @@ public class FootballPlayer40YardDashInfo {
 }
 ```
 
-- Method 2
+- Step 2
 ```java:
 public class FootballPlayer40YardDashInfo {
 
@@ -144,7 +144,7 @@ public class FootballPlayer40YardDashInfo {
 }
 ```
 
-- Method 3
+- Step 3
 ```java:
 public class FootballPlayer40YardDashInfo {
 
@@ -201,4 +201,93 @@ public class FootballPlayer40YardDashInfo {
 
     //Main Method//
 }
+```
+
+### Example 2
+```java:
+double average = 0.0;
+double[] dashTimes {4.36, 4.59, 4.41};
+for(int i=0; i < dashTimes.length; i++){
+    totalDashTimes += dashTimes;
+}
+average = totalDashTimes / dashTimes.length;
+
+```
+
+- Solution:
+```java:
+double[] dashTimes {4.36, 4.59, 4.41};
+double average = getAvgDashTime(dashTimes);
+
+public static double getAvgDashTime(double[] dashTimes){
+    double[] dashTimes {4.36, 4.59, 4.41};
+for(int i=0; i < dashTimes.length; i++){
+    totalDashTimes += dashTimes;
+}
+return totalDashTimes / dashTimes.length;
+}
+
+```
+
+## When to NOT extract methods
+- If the code is as clear as a method don't extract the method
+
+### Example
+```java:
+String inTop15 = checkIFInTop15(avg40YdTime) ? " *Top 15\n : \n";
+
+public boolean checkIfInTop15(double avg40YdTime){
+
+    return avg40YdTime < 4.41;
+}
+
+String inTop15 = (avg40YdTime < 4.41) ? "*Top 15\n : \n";
+
+```
+
+## When to Get Rid of Temps
+- The temp is used once and doesn't add to understanding
+- The temp holds the value of an expression
+
+### Example 1
+```java:
+double dashTime = 4.50;
+
+double avg40YdDash = getAvgDashTime();
+
+String dasgGrade = ((dashTime <= avg40YdDash) ? "Good":"Bad");
+
+System.out.println("That was a " + dashGrade + " time" ); 
+```
+
+Solution
+```java:
+double dashTime = 4.50;
+
+String dasgGrade = ((dashTime <= getAvgDashTime()) ? "Good":"Bad");
+
+System.out.println("That was a " + dashGrade + " time" ); 
+```
+
+### Example 2
+```java:
+double avgDashTime = totalDashTime / totalDashes;
+
+if(avgDashTime > 4.41){
+    System.out.println ("Average time....");
+
+    
+}
+
+```
+
+Solution:
+```java:
+
+if(avgDashTime() > 4.41){ System.out.println ("Average time...."); }
+
+double avgDashTime(){
+    return totalDashTime / totalDashes;
+}
+
 ```
